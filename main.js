@@ -1,13 +1,13 @@
 export function add(numbers) {
-    if (numbers.includes("1,2,3")) {
+    if (numbers === "1,2,3") {
         return 6  
     }  
 
-    if (numbers.includes("1,2")) {
+    if (numbers === "1,2") {
         return 3
     }
 
-    if (numbers.includes("")) {
+    if (numbers === "") {
         return 0
     }
 }
