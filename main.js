@@ -4,7 +4,7 @@ export function add(numbers) {
     }
 
     return numbers
-        .split(",") // split en tableaux
-        .map(Number) // converti en nombre
-        .reduce((accum, numactuel) => accum + numactuel, 0) // somme les nombres
+        .split(/[,\n]/)
+        .map(Number)
+        .reduce((accum, numactuel) => accum + numactuel, 0)
 }
