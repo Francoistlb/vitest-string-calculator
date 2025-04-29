@@ -1,23 +1,11 @@
 export function add(numbers) {
-    if (numbers === "") {
-        return 0
-    }
+    if (numbers === "") return 0
+    if (numbers.includes('[]')) throw new Error('[] ne sont pas permis')
 
-    if (numbers.includes('[]')) {
-        throw new Error('[] ne sont pas permis')
-    }
+    const isCustom = numbers.startsWith('//')
+    const delimiter = isCustom ? numbers[2] : ','
+    const nums = isCustom ? numbers.substring(numbers.indexOf('\n') + 1) : numbers
 
-    let delimiter = ',';
-    let numbersToProcess = numbers;
-
-    
-    if (numbers.startsWith('//')) {
-        delimiter = numbers[2];
-        numbersToProcess = numbers.substring(numbers.indexOf('\n') + 1);
-    }
-
-    return numbersToProcess
-        .split(new RegExp(`[${delimiter}\n,]`))
-        .map(Number)
-        .reduce((accum, numactuel) => accum + numactuel, 0)
+    return nums.split(new RegExp(`[${delimiter}\n,]`))
+              .reduce((sum, num) => sum + Number(num), 0)
 }
